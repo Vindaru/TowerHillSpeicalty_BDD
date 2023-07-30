@@ -193,10 +193,8 @@ public class ApplicationSteps extends BasePage {
 	@Then("^.*SelectObject$")
 	public void SelectObject(DataTable table) throws InterruptedException {
 		for (Map<String, String> data : table.asMaps()) {		
-            Thread.sleep(1000);
-            if(data.containsValue("AL")){
-            	hp.selectState(table);
-            }
+            Thread.sleep(1000);           
+            	hp.selectState(table);          
 		}            
             
 	}

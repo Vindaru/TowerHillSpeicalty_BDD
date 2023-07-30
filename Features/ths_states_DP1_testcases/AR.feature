@@ -21,7 +21,7 @@ Feature: BasicInformationPage_D1.feature
     Then Enter Insured Details Firstname/ LastName/ Adress/ zipcode/ Date of birth |  userEntersText
       | ObjectName                             | Value           |
       | basicinformationapage.insuredfirstname | Test            |
-      | basicinformationapage.insuredlastName  | Test AR    |
+      | basicinformationapage.insuredlastName  | Test AR         |
       | basicinformationapage.riskStreet       | 123 Main Street |
       | basicinformationapage.riskUnitAPTLOT   |              41 |
       | basicinformationapage.riskCity         | Little Rock     |

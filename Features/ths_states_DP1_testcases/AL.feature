@@ -21,7 +21,7 @@ Feature: BasicInformationPage_D1.feature
     Then Enter Insured Details Firstname/ LastName/ Adress/ zipcode/ Date of birth |  userEntersText
       | ObjectName                             | Value           |
       | basicinformationapage.insuredfirstname | Test            |
-      | basicinformationapage.insuredlastName  | Test AL   |
+      | basicinformationapage.insuredlastName  | Test AL         |
       | basicinformationapage.riskStreet       | 123 Main Street |
       | basicinformationapage.riskUnitAPTLOT   |              41 |
       | basicinformationapage.riskCity         | Birmingham      |
@@ -41,8 +41,8 @@ Feature: BasicInformationPage_D1.feature
       | basicinformationapage.validateButton |
     And wait for the page to load | waitForPageLoad
     And Confirm Address  |  userClicksonButton
-      | ObjectName |
-      | basicinformationapage.confirmAddress  |
+      | ObjectName                           |
+      | basicinformationapage.confirmAddress |
     And Verify if page is loaded successfully by validationg Object displaying | verifyObjectIsPresent
       | ObjectName                      |
       | basicinformationapage.yearBuilt |

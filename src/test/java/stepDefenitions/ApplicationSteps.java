@@ -11,6 +11,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -36,6 +38,8 @@ public class ApplicationSteps extends BasePage {
 	public static WebDriver driver;
 	
 	private Action action;
+	
+	
 
 	@Given("^.*rpmLogin$")
 	public void InternalAgentLogintoRPMsuccessfully(DataTable table) throws Throwable {
@@ -44,6 +48,8 @@ public class ApplicationSteps extends BasePage {
 				"C:\\Users\\vdaru\\eclipse-workspace\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
+		
+		action = new Action(driver);
 		lp = new LoginPage(driver);
 		hp = new HomePage(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);	
@@ -78,36 +84,51 @@ public class ApplicationSteps extends BasePage {
 			
 		}
 	}	
-	@When("userEntersText")
-	 public void userEntersText(String locatorKey, String text) throws InterruptedException {
-	        String locator = LocatorUtils.getLocator(locatorKey);
-	        WebElement element = driver.findElement(By.xpath(locator));
+	@When("^.*userEntersText$")
+    public void userEntersText(DataTable table) throws Exception {
+        ScenarioMataData scData = ScenarioMataData.get(Thread.currentThread().hashCode());
+
+        for (Map<String, String> data : table.asMaps()) {
+            String objectName = data.get("ObjectName").trim();
+            System.out.println("Object name - " + objectName);
+            // Assuming the value you want to enter is in the "Value" column of the DataTable.
+            String valueToEnter = data.get("Value").trim();
+            // Use the "type" method of the "action" object to enter text into the element.
+            action.type(objectName, valueToEnter);
+        }
+    }
+	 
+	 @When("^.*userClicksonButton$")
+	 public void userClicksonbutton(DataTable table) throws Exception {
+		 ScenarioMataData scData = ScenarioMataData.get(Thread.currentThread().hashCode());
+
+	        for (Map<String, String> data : table.asMaps()) {
+	        	String objectName = data.get("ObjectName").trim();
 	        Thread.sleep(1000);
-	        element.clear();
-	        element.sendKeys(text);
+	        action.click(objectName);
+	        }
 	    }
 	 
-	 @When("userClicksonButton")
-	 public void userClicksonbutton(String locatorKey) throws InterruptedException {
-	        String locator = LocatorUtils.getLocator(locatorKey);
-	        WebElement element = driver.findElement(By.xpath(locator));
-	        Thread.sleep(1000);
-	        element.click();
+//	
+	 @Then("^.*selectDropdownvalue$")
+	    public void selectDropdownvalue(DataTable table) throws Exception {
+	        ScenarioMataData scData = ScenarioMataData.get(Thread.currentThread().hashCode());
+
+	        for (Map<String, String> data : table.asMaps()) {
+	            String objectName = data.get("ObjectName").trim();
+	            System.out.println("Object name - " + objectName);
+	            // Assuming the value you want to enter is in the "Value" column of the DataTable.
+	            String valueToEnter = data.get("Value").trim();
+	            // Use the "type" method of the "action" object to enter text into the element.
+	            action.selectBySendkeys(objectName, valueToEnter);
+	        }
 	    }
-	 
-//	 @When("userSelectsdropdownbyValue")
-//	 public void userSelectsdropdownbyValue(String locatorKey) throws InterruptedException {
-//	        String locator = LocatorUtils.getLocator(locatorKey);
-//	        WebElement element = driver.findElement(By.xpath(locator));
-//	        Thread.sleep(1000);
-//	        element.click();
-//	    }
 	
 
-	@When("waitForPageLoad")
+	 @Then("^.*waitForPageLoad$")
 	public static void waitForPageLoad() {
 		try {
-			(new WebDriverWait(driver, 5)).until(new ExpectedCondition<Boolean>() {
+			(new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
 				public Boolean apply(WebDriver d) {
 					return ((JavascriptExecutor) d).executeScript("return document.readyState").equals("complete");
 				}
@@ -118,10 +139,25 @@ public class ApplicationSteps extends BasePage {
 	}
 
 
-	@And("Sleep 2000ms")
-	public void wait_until_page_load() throws InterruptedException {
-		Thread.sleep(2000);
-	}
+	 @Then("^.*verifyObjectIsPresent$")
+	    public void verifyObjectIsPresent(DataTable datatable) {
+	        List<Map<String, String>> data = datatable.asMaps(String.class, String.class);
+	        
+	        for (Map<String, String> row : data) {
+	            String objectName = row.get("ObjectName");
+
+	            try {
+	                // Use the objectName to find the element
+	                driver.findElement(By.name(objectName));
+
+	                // Element found, page loaded successfully
+	                System.out.println("Element with name '" + objectName + "' is present. Page loaded successfully.");
+	            } catch (NoSuchElementException e) {
+	                // Element not found, page not loaded successfully
+	                throw new AssertionError("Element with name '" + objectName + "' is not present. Page not loaded successfully.");
+	            }
+	        }
+	    }
 
 	@Then("^.*verify next page title$") 
 	public void verify_next_page_title(DataTable table) throws InterruptedException {
@@ -181,8 +217,8 @@ public class ApplicationSteps extends BasePage {
 		for (Map<String, String> data : datatable.asMaps()) {
 			String objectName = data.get("ObjectName").trim();
 			System.out.println("Object name -   "   + objectName);
-			 action = new Action();
-			action.click(objectName);
+			action = new Action(driver);
+			action.clickradiobutton(objectName);
 		}
 	   }         
             

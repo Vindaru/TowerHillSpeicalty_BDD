@@ -9,12 +9,16 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -27,29 +31,76 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+public class Action {
 
-public class Action  {
-	
 	WebDriver driver = null;
-	
+
 	public void scrollByVisibilityOfElement(WebDriver driver, WebElement ele) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView();", ele);
 
 	}
-	
-	
-	public void click(String object) throws Exception {
-		System.out.println("ObjectName in Action Class =   " + object);
-		
-		driver.findElement(objMap.getLocator(object)).click();
-//		ScenarioDataMap.get(Thread.currentThread().hashCode()).getDriver().findElement(objMap.getLocator(object))
-//		.click();
 
+	public void click(String object) throws Exception {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, 10); // Adjust the timeout as needed
+			By locator = objMap.getLocator(object);
+			WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+			element.click();
+		} catch (TimeoutException e) {
+			System.out.println("Timeout waiting for element to be clickable: " + object);
+		} catch (NoSuchElementException e) {
+			System.out.println("Element not found: " + object);
+		} catch (Exception e) {
+			System.out.println("Error occurred while clicking on element: " + object);
+		}
 
 	}
 
-	
+	public void clickradiobutton(String object) throws Exception {
+		By locator = objMap.getLocator(object);
+		WebElement radioButton = driver.findElement(locator);
+
+		// Check if the radio button is already selected
+		boolean isSelected = radioButton.isSelected();
+		// If the radio button is not already selected, then click on it
+		if (!isSelected) {
+			radioButton.click();
+		}
+
+	}
+
+//	public void selectBySendkeys(String object, String optionValue) throws Exception {
+//	    By locator = objMap.getLocator(object);
+//	    WebElement dropdownElement = driver.findElement(locator);
+//
+//	    // Create a Select object for the dropdown element
+//	    Select dropdown = new Select(dropdownElement);
+//
+//	    // Check if the option is already selected (if needed)
+//	    WebElement selectedOption = dropdown.getFirstSelectedOption();
+//	    String selectedValue = selectedOption.getAttribute("value");
+//	    if (selectedValue.equals(optionValue)) {
+//	        // The option is already selected, no need to do anything
+//	        System.out.println("Option with value '" + optionValue + "' is already selected.");
+//	    } else {
+//	        // If the option is not already selected, select it using the "selectByValue" method
+//	        dropdown.selectByVisibleText(selectedValue);
+//	    }
+//	}
+
+	public void selectBySendkeys(String object, String optionValue) throws Exception {
+		By locator = objMap.getLocator(object);
+		WebElement dropdownElement = driver.findElement(locator);
+		// Wait for the dropdown element to be clickable
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.elementToBeClickable(dropdownElement));
+		// Click to open the dropdown
+		dropdownElement.click();
+		// Type the option value and press Enter to select it
+		dropdownElement.sendKeys(optionValue + Keys.ENTER);
+	}
+
 	public boolean findElement(WebDriver driver, WebElement ele) {
 		boolean flag = false;
 		try {
@@ -68,60 +119,37 @@ public class Action  {
 		}
 		return flag;
 	}
-	
-	 public void userEntersText(String locatorKey, String text) throws InterruptedException {
-	        String locator = LocatorUtils.getLocator(locatorKey);
-	        WebElement element = driver.findElement(By.xpath(locator));
-	        Thread.sleep(1000);
-	        element.clear();
-	        element.sendKeys(text);
-	    }
-	 
-	 public void userClicksonbutton(String locatorKey) throws InterruptedException {
-	        String locator = LocatorUtils.getLocator(locatorKey);
-	        WebElement element = driver.findElement(By.xpath(locator));
-	        Thread.sleep(1000);
-	        element.click();
-	    }
-	 
-//	 @When("userSelectsdropdownbyValue")
-//	 public void userSelectsdropdownbyValue(String locatorKey) throws InterruptedException {
-//	        String locator = LocatorUtils.getLocator(locatorKey);
-//	        WebElement element = driver.findElement(By.xpath(locator));
-//	        Thread.sleep(1000);
-//	        element.click();
-//	    }
 
-//	 public static void clickRadioButtonByValue(WebDriver driver, String radioName, String valueToSelect) {
-//	        java.util.List<WebElement> radioButtons = driver.findElements(By.name(radioName));
-//
-//	        for (WebElement radioButton : radioButtons) {
-//	            if (valueToSelect.equals(radioButton.getAttribute("value"))) {
-//	                if (!radioButton.isSelected()) {
-//	                    // Use Actions class to click the radio button.
-//	                    Actions actions = new Actions(driver);
-//	                    actions.moveToElement(radioButton).click().build().perform();
-//	                }
-//	                break;
-//	            }
-//	        }
-//	    }
-	 public static void defaultRadiobutton_no(WebDriver driver, String radioName, String valueToSelect) {
-	        java.util.List<WebElement> radioButtons = driver.findElements(By.name(radioName));
+	public void userEntersText(String locatorKey, String text) throws InterruptedException {
+		String locator = LocatorUtils.getLocator(locatorKey);
+		WebElement element = driver.findElement(By.xpath(locator));
+		Thread.sleep(1000);
+		element.clear();
+		element.sendKeys(text);
+	}
 
-	        for (WebElement radioButton : radioButtons) {
-	            if (valueToSelect.equals(radioButton.getAttribute("value"))) {
-	                if (!radioButton.isSelected()) {
-	                    // Use Actions class to click the radio button.
-	                    Actions actions = new Actions(driver);
-	                    actions.moveToElement(radioButton).click().build().perform();
-	                }
-	                break;
-	            }
-	        }
-	    }
-	
-	
+	public void userClicksonbutton(String locatorKey) throws InterruptedException {
+		String locator = LocatorUtils.getLocator(locatorKey);
+		WebElement element = driver.findElement(By.xpath(locator));
+		Thread.sleep(1000);
+		element.click();
+	}
+
+	public static void defaultRadiobutton_no(WebDriver driver, String radioName, String valueToSelect) {
+		java.util.List<WebElement> radioButtons = driver.findElements(By.name(radioName));
+
+		for (WebElement radioButton : radioButtons) {
+			if (valueToSelect.equals(radioButton.getAttribute("value"))) {
+				if (!radioButton.isSelected()) {
+					// Use Actions class to click the radio button.
+					Actions actions = new Actions(driver);
+					actions.moveToElement(radioButton).click().build().perform();
+				}
+				break;
+			}
+		}
+	}
+
 	public boolean isDisplayed(WebDriver driver, WebElement ele) {
 		boolean flag = false;
 		flag = findElement(driver, ele);
@@ -138,7 +166,6 @@ public class Action  {
 		return flag;
 	}
 
-	
 	public boolean isSelected(WebDriver driver, WebElement ele) {
 		boolean flag = false;
 		flag = findElement(driver, ele);
@@ -155,7 +182,6 @@ public class Action  {
 		return flag;
 	}
 
-	
 	public boolean isEnabled(WebDriver driver, WebElement ele) {
 		boolean flag = false;
 		flag = findElement(driver, ele);
@@ -179,30 +205,12 @@ public class Action  {
 	 * @param string
 	 * @return - true/false
 	 */
-	public boolean type(WebElement ele, String string) {
-		boolean flag = false;
-		try {
-			flag = ele.isDisplayed();
-			ele.clear();
-			ele.sendKeys(string);
-			// logger.info("Entered text :"+text);
-			flag = true;
-		} catch (Exception e) {
-			System.out.println("Location Not found");
-			flag = false;
-		} finally {
-			if (flag) {
-				System.out.println("Successfully entered value");
-			} else {
-				System.out.println("Unable to enter value");
-			}
-
-		}
-		return flag;
+	public void type(String objectName, String text) throws Exception {
+		WebElement element = driver.findElement(objMap.getLocator(objectName));
+		element.sendKeys(text);
 	}
 
-	
-	public boolean selectBySendkeys(String value,WebElement ele) {
+	public boolean selectBySendkeys(String value, WebElement ele) {
 		boolean flag = false;
 		try {
 			ele.sendKeys(value);
@@ -213,7 +221,7 @@ public class Action  {
 			return false;
 		} finally {
 			if (flag) {
-				System.out.println("Select value from the DropDown");		
+				System.out.println("Select value from the DropDown");
 			} else {
 				System.out.println("Not Selected value from the DropDown");
 				// throw new ElementNotFoundException("", "", "")
@@ -233,7 +241,7 @@ public class Action  {
 	 *                    Listbox etc..)
 	 * 
 	 */
-	
+
 	public boolean selectByIndex(WebElement element, int index) {
 		boolean flag = false;
 		try {
@@ -264,8 +272,7 @@ public class Action  {
 	 *                    Listbox etc..)
 	 */
 
-	
-	public boolean selectByValue(WebElement element,String value) {
+	public boolean selectByValue(WebElement element, String value) {
 		boolean flag = false;
 		try {
 			Select s = new Select(element);
@@ -296,7 +303,6 @@ public class Action  {
 	 *                    Listbox etc..)
 	 */
 
-	
 	public boolean selectByVisibleText(String visibletext, WebElement ele) {
 		boolean flag = false;
 		try {
@@ -315,7 +321,6 @@ public class Action  {
 		}
 	}
 
-	
 	public boolean mouseHoverByJavaScript(WebElement ele) {
 		boolean flag = false;
 		try {
@@ -323,8 +328,8 @@ public class Action  {
 			String javaScript = "var evObj = document.createEvent('MouseEvents');"
 					+ "evObj.initMouseEvent(\"mouseover\",true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);"
 					+ "arguments[0].dispatchEvent(evObj);";
-	//		JavascriptExecutor js = (JavascriptExecutor) driver;
-		//	js.executeScript(javaScript, mo);
+			// JavascriptExecutor js = (JavascriptExecutor) driver;
+			// js.executeScript(javaScript, mo);
 			flag = true;
 			return true;
 		}
@@ -341,7 +346,6 @@ public class Action  {
 		}
 	}
 
-	
 	public boolean JSClick(WebDriver driver, WebElement ele) {
 		boolean flag = false;
 		try {
@@ -367,8 +371,7 @@ public class Action  {
 		return flag;
 	}
 
-	
-	public boolean switchToFrameByIndex(WebDriver driver,int index) {
+	public boolean switchToFrameByIndex(WebDriver driver, int index) {
 		boolean flag = false;
 		try {
 			new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//iframe")));
@@ -393,8 +396,8 @@ public class Action  {
 	 * @param idValue : Frame ID wish to switch
 	 * 
 	 */
-	
-	public boolean switchToFrameById(WebDriver driver,String idValue) {
+
+	public boolean switchToFrameById(WebDriver driver, String idValue) {
 		boolean flag = false;
 		try {
 			driver.switchTo().frame(idValue);
@@ -419,8 +422,8 @@ public class Action  {
 	 * @param nameValue : Frame Name wish to switch
 	 * 
 	 */
-	
-	public boolean switchToFrameByName(WebDriver driver,String nameValue) {
+
+	public boolean switchToFrameByName(WebDriver driver, String nameValue) {
 		boolean flag = false;
 		try {
 			driver.switchTo().frame(nameValue);
@@ -438,7 +441,6 @@ public class Action  {
 		}
 	}
 
-	
 	public boolean switchToDefaultFrame(WebDriver driver) {
 		boolean flag = false;
 		try {
@@ -457,8 +459,7 @@ public class Action  {
 		}
 	}
 
-	
-	public void mouseOverElement(WebDriver driver,WebElement element) {
+	public void mouseOverElement(WebDriver driver, WebElement element) {
 		boolean flag = false;
 		try {
 			new Actions(driver).moveToElement(element).build().perform();
@@ -474,7 +475,6 @@ public class Action  {
 		}
 	}
 
-	
 	public boolean moveToElement(WebDriver driver, WebElement ele) {
 		boolean flag = false;
 		try {
@@ -491,7 +491,6 @@ public class Action  {
 		return flag;
 	}
 
-	
 	public boolean mouseover(WebDriver driver, WebElement ele) {
 		boolean flag = false;
 		try {
@@ -510,8 +509,8 @@ public class Action  {
 			 */
 		}
 	}
-	
-	public boolean draggable(WebDriver driver,WebElement source, int x, int y) {
+
+	public boolean draggable(WebDriver driver, WebElement source, int x, int y) {
 		boolean flag = false;
 		try {
 			new Actions(driver).dragAndDropBy(source, x, y).build().perform();
@@ -520,19 +519,19 @@ public class Action  {
 			return true;
 
 		} catch (Exception e) {
-		
+
 			return false;
-			
+
 		} finally {
 			if (flag) {
-				System.out.println("Draggable Action is performed on \""+source+"\"");			
-			} else if(!flag) {
-				System.out.println("Draggable action is not performed on \""+source+"\"");
+				System.out.println("Draggable Action is performed on \"" + source + "\"");
+			} else if (!flag) {
+				System.out.println("Draggable action is not performed on \"" + source + "\"");
 			}
 		}
 	}
-	
-	public boolean draganddrop(WebDriver driver,WebElement source, WebElement target) {
+
+	public boolean draganddrop(WebDriver driver, WebElement source, WebElement target) {
 		boolean flag = false;
 		try {
 			new Actions(driver).dragAndDrop(source, target).perform();
@@ -544,14 +543,13 @@ public class Action  {
 		} finally {
 			if (flag) {
 				System.out.println("DragAndDrop Action is performed");
-			} else if(!flag) {
+			} else if (!flag) {
 				System.out.println("DragAndDrop Action is not performed");
 			}
 		}
 	}
-	
-	
-	public boolean slider(WebDriver driver,WebElement ele, int x, int y) {
+
+	public boolean slider(WebDriver driver, WebElement ele, int x, int y) {
 		boolean flag = false;
 		try {
 			// new Actions(driver).dragAndDropBy(dragitem, 400, 1).build()
@@ -571,9 +569,8 @@ public class Action  {
 			}
 		}
 	}
-	
-	
-	public boolean rightclick(WebDriver driver,WebElement ele) {
+
+	public boolean rightclick(WebDriver driver, WebElement ele) {
 		boolean flag = false;
 		try {
 			Actions clicker = new Actions(driver);
@@ -592,25 +589,24 @@ public class Action  {
 			}
 		}
 	}
-	
-	
-	public boolean switchWindowByTitle(WebDriver driver,String windowTitle, int count) {
+
+	public boolean switchWindowByTitle(WebDriver driver, String windowTitle, int count) {
 		boolean flag = false;
 		try {
 			Set<String> windowList = driver.getWindowHandles();
 
 			String[] array = windowList.toArray(new String[0]);
 
-			driver.switchTo().window(array[count-1]);
+			driver.switchTo().window(array[count - 1]);
 
-			if (driver.getTitle().contains(windowTitle)){
+			if (driver.getTitle().contains(windowTitle)) {
 				flag = true;
-			}else{
+			} else {
 				flag = false;
 			}
 			return flag;
 		} catch (Exception e) {
-			//flag = true;
+			// flag = true;
 			return false;
 		} finally {
 			if (flag) {
@@ -620,13 +616,13 @@ public class Action  {
 			}
 		}
 	}
-	
+
 	public boolean switchToNewWindow(WebDriver driver) {
 		boolean flag = false;
 		try {
 
-			Set<String> s=driver.getWindowHandles();
-			Object popup[]=s.toArray();
+			Set<String> s = driver.getWindowHandles();
+			Object popup[] = s.toArray();
 			driver.switchTo().window(popup[1].toString());
 			flag = true;
 			return flag;
@@ -635,19 +631,19 @@ public class Action  {
 			return flag;
 		} finally {
 			if (flag) {
-				System.out.println("Window is Navigated with title");				
+				System.out.println("Window is Navigated with title");
 			} else {
 				System.out.println("The Window with title: is not Selected");
 			}
 		}
 	}
-	
+
 	public boolean switchToOldWindow(WebDriver driver) {
 		boolean flag = false;
 		try {
 
-			Set<String> s=driver.getWindowHandles();
-			Object popup[]=s.toArray();
+			Set<String> s = driver.getWindowHandles();
+			Object popup[] = s.toArray();
 			driver.switchTo().window(popup[0].toString());
 			flag = true;
 			return flag;
@@ -656,13 +652,13 @@ public class Action  {
 			return flag;
 		} finally {
 			if (flag) {
-				System.out.println("Focus navigated to the window with title");			
+				System.out.println("Focus navigated to the window with title");
 			} else {
 				System.out.println("The Window with title: is not Selected");
 			}
 		}
 	}
-	
+
 	public int getColumncount(WebElement row) {
 		List<WebElement> columns = row.findElements(By.tagName("td"));
 		int a = columns.size();
@@ -673,22 +669,20 @@ public class Action  {
 		}
 		return a;
 	}
-	
-	
+
 	public int getRowCount(WebElement table) {
 		List<WebElement> rows = table.findElements(By.tagName("tr"));
 		int a = rows.size() - 1;
 		return a;
 	}
-	
-	
+
 	/**
 	 * Verify alert present or not
 	 * 
 	 * @return: Boolean (True: If alert preset, False: If no alert)
 	 * 
 	 */
-	
+
 	public boolean Alert(WebDriver driver) {
 		boolean presentFlag = false;
 		Alert alert = null;
@@ -706,16 +700,16 @@ public class Action  {
 			ex.printStackTrace();
 		} finally {
 			if (!presentFlag) {
-				System.out.println("The Alert is handled successfully");		
-			} else{
+				System.out.println("The Alert is handled successfully");
+			} else {
 				System.out.println("There was no alert to handle");
 			}
 		}
 
 		return presentFlag;
 	}
-	
-	public boolean launchUrl(WebDriver driver,String url) {
+
+	public boolean launchUrl(WebDriver driver, String url) {
 		boolean flag = false;
 		try {
 			driver.navigate().to(url);
@@ -725,50 +719,43 @@ public class Action  {
 			return false;
 		} finally {
 			if (flag) {
-				System.out.println("Successfully launched \""+url+"\"");				
+				System.out.println("Successfully launched \"" + url + "\"");
 			} else {
-				System.out.println("Failed to launch \""+url+"\"");
+				System.out.println("Failed to launch \"" + url + "\"");
 			}
 		}
 	}
-	
-	
-	public boolean isAlertPresent(WebDriver driver) 
-	{ 
-		try 
-		{ 
-			driver.switchTo().alert(); 
-			return true; 
-		}   // try 
-		catch (NoAlertPresentException Ex) 
-		{ 
-			return false; 
-		}   // catch 
+
+	public boolean isAlertPresent(WebDriver driver) {
+		try {
+			driver.switchTo().alert();
+			return true;
+		} // try
+		catch (NoAlertPresentException Ex) {
+			return false;
+		} // catch
 	}
-	
-	
+
 	public String getTitle(WebDriver driver) {
 		boolean flag = false;
 
 		String text = driver.getTitle();
 		if (flag) {
-			System.out.println("Title of the page is: \""+text+"\"");
+			System.out.println("Title of the page is: \"" + text + "\"");
 		}
 		return text;
 	}
-	
-	
-	public String getCurrentURL(WebDriver driver)  {
+
+	public String getCurrentURL(WebDriver driver) {
 		boolean flag = false;
 
 		String text = driver.getCurrentUrl();
 		if (flag) {
-			System.out.println("Current URL is: \""+text+"\"");
+			System.out.println("Current URL is: \"" + text + "\"");
 		}
 		return text;
 	}
-	
-	
+
 	public boolean click1(WebElement locator, String locatorName) {
 		boolean flag = false;
 		try {
@@ -779,41 +766,38 @@ public class Action  {
 			return false;
 		} finally {
 			if (flag) {
-				System.out.println("Able to click on \""+locatorName+"\"");
+				System.out.println("Able to click on \"" + locatorName + "\"");
 			} else {
-				System.out.println("Click Unable to click on \""+locatorName+"\"");
+				System.out.println("Click Unable to click on \"" + locatorName + "\"");
 			}
 		}
 
 	}
-	
-	
-	public void fluentWait(WebDriver driver,WebElement element, int timeOut) {
-	    Wait<WebDriver> wait = null;
-	    try {
-	        wait = new FluentWait<WebDriver>((WebDriver) driver)
-	        		.withTimeout(Duration.ofSeconds(20))
-	        	    .pollingEvery(Duration.ofSeconds(2))
-	        	    .ignoring(Exception.class);
-	        wait.until(ExpectedConditions.visibilityOf(element));
-	        element.click();
-	    }catch(Exception e) {
-	    }
+
+	public void fluentWait(WebDriver driver, WebElement element, int timeOut) {
+		Wait<WebDriver> wait = null;
+		try {
+			wait = new FluentWait<WebDriver>((WebDriver) driver).withTimeout(Duration.ofSeconds(20))
+					.pollingEvery(Duration.ofSeconds(2)).ignoring(Exception.class);
+			wait.until(ExpectedConditions.visibilityOf(element));
+			element.click();
+		} catch (Exception e) {
+		}
 	}
-	
+
 	public void implicitWait(WebDriver driver, int timeOut) {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
-	
-	public void explicitWait(WebDriver driver, WebElement element, int timeOut ) {
-		WebDriverWait wait = new WebDriverWait(driver,timeOut);
+
+	public void explicitWait(WebDriver driver, WebElement element, int timeOut) {
+		WebDriverWait wait = new WebDriverWait(driver, timeOut);
 		wait.until(ExpectedConditions.visibilityOf(element));
 	}
-	
+
 	public void pageLoadTimeOut(WebDriver driver, int timeOut) {
 		driver.manage().timeouts().pageLoadTimeout(timeOut, TimeUnit.SECONDS);
 	}
-	
+
 	public String screenShot(WebDriver driver, String filename) {
 		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
 		TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
@@ -826,42 +810,37 @@ public class Action  {
 			e.getMessage();
 		}
 		// This new path for jenkins
-		String newImageString = "http://localhost:8082/job/MyStoreProject/ws/MyStoreProject/ScreenShots/" + filename + "_"
-				+ dateName + ".png";
+		String newImageString = "http://localhost:8082/job/MyStoreProject/ws/MyStoreProject/ScreenShots/" + filename
+				+ "_" + dateName + ".png";
 		return newImageString;
 	}
-	
+
 	public String getCurrentTime() {
 		String currentDate = new SimpleDateFormat("yyyy-MM-dd-hhmmss").format(new Date());
 		return currentDate;
 	}
 
-
 	public void enter(By object, String value) throws InterruptedException {
 		// TODO Auto-generated method stub
-		
-		if(value!= null) {
-			
+
+		if (value != null) {
+
 			driver.findElement((By) object).clear();
 			Thread.sleep(1000);
 			driver.findElement((By) object).sendKeys(value);
 			Thread.sleep(1000);
-		}
-		else {
+		} else {
 			driver.findElement((By) object).clear();
 		}
-		
+
 	}
 
-
+	public Action(WebDriver driver) {
+		this.driver = driver;
+	}
 //	public void type(WebElement enteruserID, Map<String, String> data) {
 //		// TODO Auto-generated method stub
 //		
 //	}
-
-
-	
-
-	
 
 }

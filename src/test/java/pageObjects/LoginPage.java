@@ -17,6 +17,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.bdd.variables.GlobalVariables;
 import com.bdd.variables.ScenarioMataData;
+import com.ths.actiondriver.Action;
 
 import io.cucumber.datatable.DataTable;
 import utilities.ObjectMap;
@@ -113,17 +114,16 @@ public class LoginPage<ScenarioMetaData> extends BasePage{
 	public void logindetails(DataTable table) throws InterruptedException, FileNotFoundException, IOException {
          Thread.sleep(1000);
 		
-		for (Map<String, String> data : table.asMaps()) {
-			
-
+		for (Map<String, String> data : table.asMaps()) {			
 			properties = new Properties();
-	        try (FileInputStream fileInputStream = new FileInputStream("/THS-BDD/THS_locators.properties")) {
+	        try (FileInputStream fileInputStream = new FileInputStream("C:\\Users\\vdaru\\THS-git-repo\\TowerHillSpeicalty_BDD\\THS_locators.properties")) {
 	            properties.load(fileInputStream);
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
 	        GlobalVariables.initializeObjectMap();
-
+	     // Initialize the Action class with the WebDriver
+	        action = new Action(driver);
 	        ScenarioMataData scenarioData = new ScenarioMataData();
 	        scenarioData.setDriver(driver);
 			JavascriptExecutor js = (JavascriptExecutor) driver;

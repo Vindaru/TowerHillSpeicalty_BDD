@@ -1,5 +1,6 @@
 package com.bdd.variables;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,6 +13,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import utilities.ObjectMap;
 
 import  java.util.LinkedList;
+import java.util.Properties;
+
 import utilities.ObjectMap;
 
 
@@ -43,10 +46,11 @@ public class GlobalVariables {
     
     public static ObjectMap objMap = null;
 
-    public static void initializeObjectMap() throws FileNotFoundException, IOException {
+    public static void initializeObjectMap() {
         if (objMap == null) {
             // Pass the correct path of locators.properties here when creating an instance of ObjectMap
-            objMap = new ObjectMap("/THS-BDD/THS_locators.properties");
+            objMap = new ObjectMap("C:\\Users\\vdaru\\THS-git-repo\\TowerHillSpeicalty_BDD\\THS_locators.properties");
         }
     }
+    
 }

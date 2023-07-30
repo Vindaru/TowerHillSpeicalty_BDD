@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="optional" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="optional" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/commons-lang3-3.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/groovy-3.0.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/groovy-json-3.0.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/groovy-xml-3.0.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/hamcrest-2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/httpclient-4.5.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/httpcore-4.4.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/httpmime-4.5.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/jakarta.activation-api-1.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/jakarta.xml.bind-api-2.3.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/jaxb-impl-2.3.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/rest-assured-4.3.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/tagsoup-1.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/ATUTestRecorder_2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/commons-lang3-3.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/groovy-3.0.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/groovy-json-3.0.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/groovy-xml-3.0.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/jakarta.activation-api-1.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/jakarta.xml.bind-api-2.3.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/jaxb-impl-2.3.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/rest-assured-all-4.3.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/selenium-server-3.14.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/tagsoup-1.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/poi-3.17/poi-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/poi-3.17/poi-examples-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/poi-3.17/poi-excelant-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/poi-3.17/poi-ooxml-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/poi-3.17/poi-ooxml-schemas-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/poi-3.17/poi-scratchpad-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/poi-3.17/lib/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/poi-3.17/lib/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/poi-3.17/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/poi-3.17/lib/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/poi-3.17/ooxml-lib/curvesapi-1.04.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/poi-3.17/ooxml-lib/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/selenium-java-3.14.0/client-combined-3.14.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/selenium-java-3.14.0/client-combined-3.14.0-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/selenium-java-3.14.0/libs/byte-buddy-1.8.15.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/selenium-java-3.14.0/libs/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/selenium-java-3.14.0/libs/commons-exec-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/selenium-java-3.14.0/libs/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/selenium-java-3.14.0/libs/guava-25.0-jre.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/selenium-java-3.14.0/libs/httpclient-4.5.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/selenium-java-3.14.0/libs/httpcore-4.4.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/selenium-java-3.14.0/libs/okhttp-3.10.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/Jars/selenium-java-3.14.0/libs/okio-1.14.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/docs/json-path-4.3.3-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/docs/json-path-4.3.3-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/docs/rest-assured-4.3.3-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/docs/rest-assured-4.3.3-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/docs/rest-assured-common-4.3.3-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/docs/rest-assured-common-4.3.3-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/docs/xml-path-4.3.3-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/docs/xml-path-4.3.3-sources.jar"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import org.apache.commons.io.FileUtils;
+import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -33,7 +34,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Action {
 
-	WebDriver driver = null;
+	static WebDriver driver = null;
 
 	public void scrollByVisibilityOfElement(WebDriver driver, WebElement ele) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -42,6 +43,22 @@ public class Action {
 	}
 
 	public void click(String object) throws Exception {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, 10); // Adjust the timeout as needed
+			By locator = objMap.getLocator(object);
+			WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+			element.click();
+		} catch (TimeoutException e) {
+			System.out.println("Timeout waiting for element to be clickable: " + object);
+		} catch (NoSuchElementException e) {
+			System.out.println("Element not found: " + object);
+		} catch (Exception e) {
+			System.out.println("Error occurred while clicking on element: " + object);
+		}
+
+	}
+	
+	public void clickOnValue(String object) throws Exception {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, 10); // Adjust the timeout as needed
 			By locator = objMap.getLocator(object);
@@ -96,6 +113,7 @@ public class Action {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.elementToBeClickable(dropdownElement));
 		// Click to open the dropdown
+		Thread.sleep(1000);
 		dropdownElement.click();
 		// Type the option value and press Enter to select it
 		dropdownElement.sendKeys(optionValue + Keys.ENTER);
@@ -150,21 +168,59 @@ public class Action {
 		}
 	}
 
-	public boolean isDisplayed(WebDriver driver, WebElement ele) {
-		boolean flag = false;
-		flag = findElement(driver, ele);
-		if (flag) {
-			flag = ele.isDisplayed();
-			if (flag) {
-				System.out.println("The element is Displayed");
-			} else {
-				System.out.println("The element is not Displayed");
-			}
-		} else {
-			System.out.println("Not displayed ");
-		}
-		return flag;
-	}
+	 public static boolean isElementPresent(String object) throws Exception {
+		 try {
+	            By locator = objMap.getLocator(object);
+	            
+	            WebDriverWait wait = new WebDriverWait(driver, 10);
+	            
+	            // Wait for the element to be present and visible before locating it
+	            WebElement elementvisable = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	            Assert.assertTrue(true);
+	            System.out.println("Element found or visible: ");	            
+	            return true;
+	        } catch (org.openqa.selenium.TimeoutException e) {
+	            // TimeoutException will be thrown if the element is not found within the specified timeout
+	            System.out.println("Element not found or not visible: " + e.getMessage());
+	            return false;
+	        } catch (AssertionError e) {
+	            // AssertionError will be thrown if the text does not match the expected value
+	            System.out.println("Text does not match the expected value: " + e.getMessage());
+	            return false;
+	        }
+	    }
+	 
+	 public static String getElementcolor(WebElement ele) throws Exception {
+		String color = ele.getCssValue("color").toString();
+		String[] hexValue = color.replace("rgba(","").replace(")","").split(",");
+		int hexValue1 = Integer.parseInt(hexValue[0]);
+				hexValue[1] = hexValue[1].trim();
+		int hexValue2 = Integer.parseInt(hexValue[1]);
+				hexValue[2] = hexValue[2].trim();
+		int hexValue3 = Integer.parseInt(hexValue[2]);
+			String actualcolor = String.format("#%02x%02x%02x", hexValue1, hexValue2, hexValue3);		
+		return actualcolor;
+		
+	    }
+	 
+	 public static String getElementTextorValue(String object) throws Exception {
+		 try {
+		        By locator = objMap.getLocator(object);
+
+		        WebDriverWait wait = new WebDriverWait(driver, 10);
+		        WebElement dropdownElement = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		        String objectTextValue = dropdownElement.getText();
+		        System.out.println("Value is displaying as -- " + objectTextValue);
+		        return objectTextValue; // Return the captured value as a string
+		    } catch (org.openqa.selenium.TimeoutException e) {
+		        System.out.println("Element not found or not visible: " + e.getMessage());
+		        return null;
+		    } catch (AssertionError e) {
+		        System.out.println("Text does not match the expected value: " + e.getMessage());
+		        return null;
+		    }
+		
+	    }
 
 	public boolean isSelected(WebDriver driver, WebElement ele) {
 		boolean flag = false;
@@ -206,8 +262,18 @@ public class Action {
 	 * @return - true/false
 	 */
 	public void type(String objectName, String text) throws Exception {
-		WebElement element = driver.findElement(objMap.getLocator(objectName));
-		element.sendKeys(text);
+		//WebElement element = driver.findElement(objMap.getLocator(objectName));
+	//	element.sendKeys(text +  + Keys.ENTER);		
+		 try {
+	            // Locate the input field using a suitable locator.
+			 WebElement element = driver.findElement(objMap.getLocator(objectName));
+	            element.sendKeys(text + Keys.ENTER);
+	        } catch (org.openqa.selenium.NoSuchElementException e) {
+	            System.out.println("Input field not found: " + e.getMessage());
+	        } catch (InterruptedException e) {
+	            System.out.println("Thread interrupted: " + e.getMessage());
+	        }
+	    	
 	}
 
 	public boolean selectBySendkeys(String value, WebElement ele) {

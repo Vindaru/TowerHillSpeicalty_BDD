@@ -15,6 +15,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
+			<attribute name="module" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
@@ -93,5 +94,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/vdaru/OneDrive - Tower Hill Insurance Group, LLC/Desktop/Desktopp/ECLIPSE/requried jars/junit-jupiter-api-5.10.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

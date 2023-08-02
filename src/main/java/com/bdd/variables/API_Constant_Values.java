@@ -13,8 +13,8 @@ public class API_Constant_Values {
 	public static final String DP1_Path_TestData = "C:\\Users\\vdaru\\OneDrive - Tower Hill Insurance Group, LLC\\Desktop\\Eclipse-WorkSpace\\API workbooks\\Mike\\";
 	public static final String DP1_File_TestData = "SUG_DP1.xlsx";
 
-	public static final String DP3_Path_TestData = "C:\\Users\\vdaru\\Desktop\\API_Automation\\MH\\";
-	public static final String DP3_File_TestData = "API_MH.xlsx";
+	public static final String DP3_Path_TestData = "C:\\Users\\vdaru\\OneDrive - Tower Hill Insurance Group, LLC\\Desktop\\Eclipse-WorkSpace\\API workbooks\\Mike\\";
+	public static final String DP3_File_TestData = "SUG_DP3.xlsx";
 
 	public static final String HO4_Path_TestData = "C:\\Users\\vdaru\\Desktop\\API_Automation\\MH\\";
 	public static final String HO4_File_TestData = "API_MH.xlsx";
@@ -35,9 +35,9 @@ public class API_Constant_Values {
 
 //KEY    
 	public static final String API_KEY_UAT = "6880c123d5dd4aaf96c9f8f91b4e0dab";
-	public static final String API_KEY_GREEN = "";
-	public static final String API_KEY_RED = "";
-	public static final String API_KEY_YELLOW = "";
+	public static final String API_KEY_GREEN = "6880c123d5dd4aaf96c9f8f91b4e0dab";
+	public static final String API_KEY_RED = "6880c123d5dd4aaf96c9f8f91b4e0dab";
+	public static final String API_KEY_YELLOW = "6880c123d5dd4aaf96c9f8f91b4e0dab";
 	public static final String API_KEY_BETA = "44f60db6156a49a6b59838744dc84585";
 	public static final String API_KEY_PROD_WO_INSCORE = "f09f140aa294431db39d97da92b45831";
 	public static final String API_KEY_BETA_NatGen = "006e1b5d64804261a2840241ee88ab33";

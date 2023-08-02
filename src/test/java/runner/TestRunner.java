@@ -1,15 +1,17 @@
 package runner;
 
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+
 import org.junit.runner.RunWith;
 
-import io.cucumber.testng.AbstractTestNGCucumberTests;
-import io.cucumber.testng.CucumberOptions;
-
+@RunWith(Cucumber.class)
 @CucumberOptions(
-	    features = "src/test/resources/featureFiles/basicinformationPage/ths_states_DP1_testcases/AL_DP1.feature",
-	    glue = {"steps"},
-	    plugin = {"json:target/cucumber.json"}
-	)
+	    features = "src\\test\\resources\\featureFiles",
+	    glue = "stepDefenitions", tags = "@DP1_OWNER_ACV",
+	    plugin = {"html:target/Destination/cucumber-pretty","json:target/cucumber.json"})
+	
 	public class TestRunner extends AbstractTestNGCucumberTests {
 	    
 	}

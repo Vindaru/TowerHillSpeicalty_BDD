@@ -22,7 +22,7 @@ public class DP1  extends ExcelUtils{
      ExcelUtils.setExcelFile(API_Constant_Values.DP1_Path_TestData + API_Constant_Values.DP1_File_TestData, "sheet1");		
 	int i, j;
 	for (j = 0; j < ExcelUtils.ExcelWSheet.getPhysicalNumberOfRows(); j++) {    			
-	    for (int a = 3; a <  ExcelUtils.ExcelWSheet.getPhysicalNumberOfRows(); a++) {	
+	    for (int a = 15; a <  ExcelUtils.ExcelWSheet.getPhysicalNumberOfRows(); a=15) {	
 			System.out.println(ExcelWSheet.getPhysicalNumberOfRows());
 		// read values form EXCEL;    	     
 //	      String APIKey_UAT =                                                        ExcelUtils.getCellData(a, 1);
@@ -41,25 +41,25 @@ public class DP1  extends ExcelUtils{
 		  int ConstructionYear =                          (int)                      ExcelUtils.getNumericCellValue(a, 14);
 		  String DwellingLossSettlement =                                            ExcelUtils.getCellData(a, 15);
 		  String FireHydrate =                                                       ExcelUtils.getCellData(a, 16);
-		  String NumberofStories =                                                    ExcelUtils.getCellData(a, 17);
+		  int NumberofStories =                           (int)                      ExcelUtils.getNumericCellValue(a, 17);
 		  String Occupancy =                                                         ExcelUtils.getCellData(a, 18);
-		  String RoofType =                                                         ExcelUtils.getCellData(a, 19);
+		  String RoofType =                                                          ExcelUtils.getCellData(a, 19);
 		  int RoofYear =                                  (int)                      ExcelUtils.getNumericCellValue(a, 20); 
-		  String RoofingMaterial =                                         ExcelUtils.getCellData(a, 21);
-		  String TownhomeorRowHome =                                   ExcelUtils.getCellData(a, 22);
+		  String RoofingMaterial =                                                   ExcelUtils.getCellData(a, 21);
+		  int TownhomeorRowHome =                         (int)                      ExcelUtils.getNumericCellValue(a, 22);
 		  String InsurenceScore =                                                    ExcelUtils.getCellData(a, 23);
 		  String FirstName =                                                         ExcelUtils.getCellData(a, 24);
 		  String LastName =                                                          ExcelUtils.getCellData(a, 25);
 		  String Date_OF_Birth =                                                     ExcelUtils.getCellData(a, 26);
 		  String New_Purchase =                                                      ExcelUtils.getCellData(a, 27);
-		  String NumberofFamilyUnits =                                                      ExcelUtils.getCellData(a, 28);
+		  int NumberofFamilyUnits =                      (int)                       ExcelUtils.getNumericCellValue(a, 28);
 		  int SquareFootage =                             (int)                      ExcelUtils.getNumericCellValue(a, 29);
 		  String Group_ID =                                                          ExcelUtils.getCellData(a, 30);
 		  String User_ID =                                                           ExcelUtils.getCellData(a, 31);
 		  String Password =                                                          ExcelUtils.getCellData(a, 32);
 		 
    
-	     RestAssured.baseURI = "https://policy-ws.uat.thig.com";
+	     RestAssured.baseURI = API_Constant_Values.URL_API_RED;
                  Response response=
 		  given()
 		       .header("Content","text/xml")
@@ -67,7 +67,7 @@ public class DP1  extends ExcelUtils{
 	               .body("<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:v2=\"http://www.thig.com/webservices/policy/external/v2\">\r\n" 
 	               		+ "   <soapenv:Header>\r\n"
 	               		+ "      <v2:RequestHeader>\r\n"
-	               		+ "         <v2:ApiKey>"+API_Constant_Values.API_KEY_UAT+"</v2:ApiKey>\r\n"
+	               		+ "         <v2:ApiKey>"+API_Constant_Values.API_KEY_PROD_WO_INSCORE+"</v2:ApiKey>\r\n"
 	               		+ "      </v2:RequestHeader>\r\n"
 	               		+ "   </soapenv:Header>\r\n"
 	               		+ "   <soapenv:Body>\r\n"
@@ -118,6 +118,7 @@ public class DP1  extends ExcelUtils{
 	               		+ "         <v2:User>\r\n"
 	               		+ "            <v2:GroupId>"+Group_ID+"</v2:GroupId>\r\n"
 	               		+ "            <v2:UserId>"+User_ID+"</v2:UserId>\r\n"
+	               		+ "            <v2:Password/>\r\n"
 	               		+ "         </v2:User>\r\n"
 	               		+ "      </v2:D1RateRequest>\r\n"
 	               		+ "   </soapenv:Body>\r\n"

@@ -1,8 +1,13 @@
 package stepDefenitions;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+
+import javax.management.ObjectName;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -16,6 +21,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.ths.actiondriver.Action;
+import com.ths.actiondriver.CoverageValidator_coverageA;
+import com.ths.actiondriver.CoverageValidator_coverageB;
+import com.ths.actiondriver.CoverageValidator_coverageC;
 import com.bdd.variables.ScenarioMataData;
 
 import io.cucumber.datatable.DataTable;
@@ -37,6 +45,7 @@ public class ApplicationSteps extends BasePage {
 	private int priority;
 	private Action action;
 	private Scenario scenario;
+	private CoverageValidator_coverageA CoverageValidation;
 	private static String storedPolicyNumber;
 
 	@Before
@@ -68,7 +77,7 @@ public class ApplicationSteps extends BasePage {
 			if (data.containsValue("red")) {
 				driver.get("https://oasis.red.thig.com");
 			} else if (data.containsValue("yellow")) {
-				driver.get("https://oasis.Yellow.thig.com");
+				driver.get("https://oasis.yellow.thig.com");
 			} else if (data.containsValue("green")) {
 				driver.get("https://oasis.green.thig.com");
 			}
@@ -101,11 +110,71 @@ public class ApplicationSteps extends BasePage {
 		for (Map<String, String> data : table.asMaps()) {
 			String objectName = data.get("ObjectName").trim();
 			// Assuming the value you want to enter is in the "Value" column of the
-			// DataTable.
 			String valueToEnter = data.get("Value").trim();
+			if (valueToEnter.equals("<today>")) {
+				SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+				Date date = new Date();
+				valueToEnter = dateFormat.format(date);
+				// action.type(objectName, valueToEnter);
+				System.out.println("I am hear --value is Date ---  ");
+			}
+			// DataTable.
+			System.out.println("I am hear --value is not Date ---  ");
 			// Use the "type" method of the "action" object to enter text into the element.
 			action.type(objectName, valueToEnter);
 		}
+	}
+
+	@When("^.*enterCoveragesAfterValidation$")
+	public void enterCoveragesAfterValidation(DataTable table) throws Exception {
+		ScenarioMataData scData = ScenarioMataData.get(Thread.currentThread().hashCode());
+
+		int dwellingCoverage = 0;
+		int otherStructuresCoverage = 0;
+		int personalPropertiesCoverage = 0;
+		String lastObjectName = "";
+		String lastValueToEnter = "";
+
+		for (Map<String, String> data : table.asMaps()) {
+			String objectName = data.get("ObjectName").trim();
+			String valueToEnter = data.get("Value").trim();
+
+			switch (objectName) {
+			case "policyPage.dwelling_covA":
+				dwellingCoverage = Integer.parseInt(valueToEnter);
+				break;
+			case "policyPage.otherStructures_covB":
+				otherStructuresCoverage = Integer.parseInt(valueToEnter);
+				break;
+			case "policyPage.personalProperties_covC":
+				personalPropertiesCoverage = Integer.parseInt(valueToEnter);
+				break;
+			}
+			lastObjectName = objectName;
+			lastValueToEnter = valueToEnter;
+		}
+		
+		 switch (lastObjectName) {
+
+	        case "policyPage.dwelling_covA":
+	        	CoverageValidator_coverageA coverageValidationA = new CoverageValidator_coverageA(driver);
+				coverageValidationA.readData();
+				coverageValidationA.validatePolicies(dwellingCoverage, lastObjectName, lastValueToEnter);
+				System.out.println("Values processed; dwellingCoverage = " + dwellingCoverage);
+	            break;
+	        case "policyPage.otherStructures_covB":
+	        	CoverageValidator_coverageB coverageValidationB = new CoverageValidator_coverageB(driver);
+				coverageValidationB.readData();
+				coverageValidationB.validatePoliciesCovB(otherStructuresCoverage, lastObjectName, lastValueToEnter);
+				System.out.println("Values processed; dwellingCoverage = " + otherStructuresCoverage);
+	            break;
+	        case "policyPage.personalProperties_covC":
+	        	CoverageValidator_coverageC coverageValidationC = new CoverageValidator_coverageC(driver);
+				coverageValidationC.readData();
+				coverageValidationC.validatePoliciesCovC(personalPropertiesCoverage, lastObjectName, lastValueToEnter);
+				System.out.println("Values processed; dwellingCoverage = " + personalPropertiesCoverage);	            
+				break;
+	    }		
 	}
 
 	@When("^.*verifytextValue$")
@@ -144,7 +213,7 @@ public class ApplicationSteps extends BasePage {
 			// DataTable.
 			String valueToEnter = data.get("Value").trim();
 			// Use the "type" method of the "action" object to enter text into the element.
-			action.selectBySendkeys(objectName, valueToEnter);
+			action.selectByVisibleText(objectName, valueToEnter);
 		}
 	}
 
@@ -162,6 +231,25 @@ public class ApplicationSteps extends BasePage {
 		}
 	}
 
+	@When("^.*verifyTextDetails$")
+	public void verifyTextDetails(DataTable table) throws Exception {
+		ScenarioMataData scData = ScenarioMataData.get(Thread.currentThread().hashCode());
+
+		for (Map<String, String> data : table.asMaps()) {
+			String objectName = data.get("ObjectName").trim();
+			// Assuming the value you want to enter is in the "Value" column of the
+			// DataTable.
+			String valueToVerify = data.get("Value").trim();
+			if (valueToVerify.equals("<today>")) {
+				SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+				Date date = new Date();
+				valueToVerify = dateFormat.format(date);
+			}
+			// Use the "type" method of the "action" object to enter text into the element.
+			action.verifyTextValue(objectName, valueToVerify);
+		}
+	}
+
 	@Then("^.*verifyObjectIsPresent$")
 	public void verifyObjectIsPresent(DataTable table) throws Exception {
 		ScenarioMataData scData = ScenarioMataData.get(Thread.currentThread().hashCode());
@@ -174,11 +262,25 @@ public class ApplicationSteps extends BasePage {
 	}
 
 	@Then("^.*clickonlinktext$")
-	public void clickonlinktext() throws Exception {
+	public void clickonlinktext(DataTable table) throws Exception {
+		WebElement linkElement = null;
 		ScenarioMataData scData = ScenarioMataData.get(Thread.currentThread().hashCode());
-
-		WebElement linkElement = driver.findElement(By.linkText(storedPolicyNumber));
-		linkElement.click();
+		for (Map<String, String> data : table.asMaps()) {
+			String value = data.get("Value").trim();
+			if (value.contains("<storedPolicyNumber>")) {
+				linkElement = driver.findElement(By.linkText(storedPolicyNumber));
+				linkElement.click();
+				Thread.sleep(1000);
+			} else {
+				Thread.sleep(1000);
+				System.out.println("Value of policy to click is === " + value);
+				linkElement = driver.findElement(
+						By.xpath("//*[contains(text(),'" + value + "') and @class='text-link policy-num-link']"));
+				System.out.println("xpath === " + linkElement);
+				linkElement.click();
+				Thread.sleep(1000);
+			}
+		}
 	}
 
 	@Then("^.*getPolicyNumber$")
@@ -196,13 +298,16 @@ public class ApplicationSteps extends BasePage {
 		for (Map<String, String> data : table.asMaps()) {
 			String objectName = data.get("ObjectName").trim();
 			String value = data.get("Value").trim();
-
 			// If the value starts and ends with "<" and ">", it means it's a placeholder.
 			// We replace the placeholder with the actual stored policy number.
 			if (value.startsWith("<") && value.endsWith(">")) {
 				value = value.replace("<", "").replace(">", ""); // Remove angle brackets
 				value = storedPolicyNumber;
-				action.selectBySendkeys(objectName, value);
+				action.type(objectName, value);
+			} else {
+				Thread.sleep(1000);
+				action.type(objectName, value);
+				Thread.sleep(1000);
 			}
 
 			System.out.println("Entering value - " + value);

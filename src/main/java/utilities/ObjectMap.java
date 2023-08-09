@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 
 public class ObjectMap {
 	
-	public Properties prop;
+	public static Properties prop;
 	
 	public ObjectMap(String filePath) {
         // Initialize the prop object
@@ -24,7 +24,7 @@ public class ObjectMap {
         }
     }
 	
-	public By getLocator(String strElement) throws Exception {
+	public static By getLocator(String strElement) throws Exception {
 	    String locator = prop.getProperty(strElement);
 	    String locatorType = locator.split(":")[0];
 	    String locatorValue = locator.substring(locator.indexOf(":") + 1);

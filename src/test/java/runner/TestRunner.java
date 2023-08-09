@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
 	    features = "src\\test\\resources\\featureFiles",
 	    glue = "stepDefenitions", tags = "@DP1_OWNER_ACV",
-	    plugin = {"html:target/Destination/cucumber-pretty","json:target/cucumber.json"})
+	    plugin = {"pretty","html:target/cucumber-html-report"})
 	
 	public class TestRunner extends AbstractTestNGCucumberTests {
 	    

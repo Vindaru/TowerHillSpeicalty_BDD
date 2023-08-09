@@ -98,15 +98,18 @@ Feature: AL_DP1.feature
       | ObjectName                  |
       | homepage.submitSearchbutton |
     And wait for the page to load | waitForPageLoad
-    Then Click on policy to go to Policy Page   |  userClicksonButton
-      | ObjectName                 | Value                |
-      | homepage.clicktoOpenPolicy | <storedPolicyNumber> |
+    Then Click on ExpandPolicyButton   |  userClicksonButton
+      | ObjectName                  |
+      | homepage.expandSearchPolicy |
     And wait for the page to load | waitForPageLoad
-    Then Verify if the Policypage is displaying  |  clickonlinktext
-    And wait for the page to load | waitForPageLoad
-    Then Click on Exit policy button   |  userClicksonButton
-      | ObjectName            |
-      | policyPage.exitbutton |
+    Then Expand the policy searching and verify the details below,   | verifyTextDetails
+      | ObjectName                   | Value        |
+      | homepage.policyEffectiveDate | <today>      |
+      | homepage.firstNameLastName   | Test Test AL |
+      | homepage.policyStatus        | LEAD         |
+      | homepage.policyState         | AL           |
+      | homepage.policyAgency        | 0A00         |
+      | homepage.policycreatedBy     | V Daru       |
 
   @BasicInformationPage
   Scenario: Verify valid agent is successfully able create a policy in state ALABAMA with riskaddress "NOT COSTAL" with Occupancy as Seasonal/DP1/ACV
@@ -200,15 +203,18 @@ Feature: AL_DP1.feature
       | ObjectName                  |
       | homepage.submitSearchbutton |
     And wait for the page to load | waitForPageLoad
-    Then Click on policy to go to Policy Page   |  userClicksonButton
-      | ObjectName                 | Value                |
-      | homepage.clicktoOpenPolicy | <storedPolicyNumber> |
+    Then Click on ExpandPolicyButton   |  userClicksonButton
+      | ObjectName                  |
+      | homepage.expandSearchPolicy |
     And wait for the page to load | waitForPageLoad
-    Then Verify if the Policypage is displaying  |  clickonlinktext
-    And wait for the page to load | waitForPageLoad
-    Then Click on Exit policy button   |  userClicksonButton
-      | ObjectName            |
-      | policyPage.exitbutton |
+    Then Expand the policy searching and verify the details below,   | verifyTextDetails
+      | ObjectName                   | Value        |
+      | homepage.policyEffectiveDate | <today>      |
+      | homepage.firstNameLastName   | Test Test AL |
+      | homepage.policyStatus        | LEAD         |
+      | homepage.policyState         | AL           |
+      | homepage.policyAgency        | 0A00         |
+      | homepage.policycreatedBy     | V Daru       |
 
   @BasicInformationPage
   Scenario: Verify valid agent is successfully able create a policy in state ALABAMA with riskaddress "NOT COSTAL" with Occupancy as Rental/DP1/ACV
@@ -302,15 +308,18 @@ Feature: AL_DP1.feature
       | ObjectName                  |
       | homepage.submitSearchbutton |
     And wait for the page to load | waitForPageLoad
-    Then Click on policy to go to Policy Page   |  userClicksonButton
-      | ObjectName                 | Value                |
-      | homepage.clicktoOpenPolicy | <storedPolicyNumber> |
+    Then Click on ExpandPolicyButton   |  userClicksonButton
+      | ObjectName                  |
+      | homepage.expandSearchPolicy |
     And wait for the page to load | waitForPageLoad
-    Then Verify if the Policypage is displaying  |  clickonlinktext
-    And wait for the page to load | waitForPageLoad
-    Then Click on Exit policy button   |  userClicksonButton
-      | ObjectName            |
-      | policyPage.exitbutton |
+    Then Expand the policy searching and verify the details below,   | verifyTextDetails
+      | ObjectName                   | Value        |
+      | homepage.policyEffectiveDate | <today>      |
+      | homepage.firstNameLastName   | Test Test AL |
+      | homepage.policyStatus        | LEAD         |
+      | homepage.policyState         | AL           |
+      | homepage.policyAgency        | 0A00         |
+      | homepage.policycreatedBy     | V Daru       |
 
   @BasicInformationPage
   Scenario: Verify valid agent is successfully able create a policy in state ALABAMA with riskaddress "NOT COSTAL" with Occupancy as Vacant/DP1/ACV
@@ -404,15 +413,18 @@ Feature: AL_DP1.feature
       | ObjectName                  |
       | homepage.submitSearchbutton |
     And wait for the page to load | waitForPageLoad
-    Then Click on policy to go to Policy Page   |  userClicksonButton
-      | ObjectName                 | Value                |
-      | homepage.clicktoOpenPolicy | <storedPolicyNumber> |
+    Then Click on ExpandPolicyButton   |  userClicksonButton
+      | ObjectName                  |
+      | homepage.expandSearchPolicy |
     And wait for the page to load | waitForPageLoad
-    Then Verify if the Policypage is displaying  |  clickonlinktext
-    And wait for the page to load | waitForPageLoad
-    Then Click on Exit policy button   |  userClicksonButton
-      | ObjectName            |
-      | policyPage.exitbutton |
+    Then Expand the policy searching and verify the details below,   | verifyTextDetails
+      | ObjectName                   | Value        |
+      | homepage.policyEffectiveDate | <today>      |
+      | homepage.firstNameLastName   | Test Test AL |
+      | homepage.policyStatus        | LEAD         |
+      | homepage.policyState         | AL           |
+      | homepage.policyAgency        | 0A00         |
+      | homepage.policycreatedBy     | V Daru       |
 
   @BasicInformationPage
   Scenario: Verify valid agent is successfully able create a policy in state ALABAMA with riskaddress "NOT COSTAL" with Occupancy as Not A Residence/DP1/ACV
@@ -506,15 +518,18 @@ Feature: AL_DP1.feature
       | ObjectName                  |
       | homepage.submitSearchbutton |
     And wait for the page to load | waitForPageLoad
-    Then Click on policy to go to Policy Page   |  userClicksonButton
-      | ObjectName                 | Value                |
-      | homepage.clicktoOpenPolicy | <storedPolicyNumber> |
+    Then Click on ExpandPolicyButton   |  userClicksonButton
+      | ObjectName                  |
+      | homepage.expandSearchPolicy |
     And wait for the page to load | waitForPageLoad
-    Then Verify if the Policypage is displaying  |  clickonlinktext
-    And wait for the page to load | waitForPageLoad
-    Then Click on Exit policy button   |  userClicksonButton
-      | ObjectName            |
-      | policyPage.exitbutton |
+    Then Expand the policy searching and verify the details below,   | verifyTextDetails
+      | ObjectName                   | Value        |
+      | homepage.policyEffectiveDate | <today>      |
+      | homepage.firstNameLastName   | Test Test AL |
+      | homepage.policyStatus        | LEAD         |
+      | homepage.policyState         | AL           |
+      | homepage.policyAgency        | 0A00         |
+      | homepage.policycreatedBy     | V Daru       |
 
   @BasicInformationPage
   Scenario: Verify valid agent is successfully able create a policy in state ALABAMA with riskaddress "NOT COSTAL" with Occupancy as Owner/DP1/Full Repair Cost
@@ -608,15 +623,18 @@ Feature: AL_DP1.feature
       | ObjectName                  |
       | homepage.submitSearchbutton |
     And wait for the page to load | waitForPageLoad
-    Then Click on policy to go to Policy Page   |  userClicksonButton
-      | ObjectName                 | Value                |
-      | homepage.clicktoOpenPolicy | <storedPolicyNumber> |
+    Then Click on ExpandPolicyButton   |  userClicksonButton
+      | ObjectName                  |
+      | homepage.expandSearchPolicy |
     And wait for the page to load | waitForPageLoad
-    Then Verify if the Policypage is displaying  |  clickonlinktext
-    And wait for the page to load | waitForPageLoad
-    Then Click on Exit policy button   |  userClicksonButton
-      | ObjectName            |
-      | policyPage.exitbutton |
+    Then Expand the policy searching and verify the details below,   | verifyTextDetails
+      | ObjectName                   | Value        |
+      | homepage.policyEffectiveDate | <today>      |
+      | homepage.firstNameLastName   | Test Test AL |
+      | homepage.policyStatus        | LEAD         |
+      | homepage.policyState         | AL           |
+      | homepage.policyAgency        | 0A00         |
+      | homepage.policycreatedBy     | V Daru       |
 
   @BasicInformationPage
   Scenario: Verify valid agent is successfully able create a policy in state ALABAMA with riskaddress "NOT COSTAL" with Occupancy as Seasonal/DP1/Full Repair Cost
@@ -710,15 +728,18 @@ Feature: AL_DP1.feature
       | ObjectName                  |
       | homepage.submitSearchbutton |
     And wait for the page to load | waitForPageLoad
-    Then Click on policy to go to Policy Page   |  userClicksonButton
-      | ObjectName                 | Value                |
-      | homepage.clicktoOpenPolicy | <storedPolicyNumber> |
+    Then Click on ExpandPolicyButton   |  userClicksonButton
+      | ObjectName                  |
+      | homepage.expandSearchPolicy |
     And wait for the page to load | waitForPageLoad
-    Then Verify if the Policypage is displaying  |  clickonlinktext
-    And wait for the page to load | waitForPageLoad
-    Then Click on Exit policy button   |  userClicksonButton
-      | ObjectName            |
-      | policyPage.exitbutton |
+    Then Expand the policy searching and verify the details below,   | verifyTextDetails
+      | ObjectName                   | Value        |
+      | homepage.policyEffectiveDate | <today>      |
+      | homepage.firstNameLastName   | Test Test AL |
+      | homepage.policyStatus        | LEAD         |
+      | homepage.policyState         | AL           |
+      | homepage.policyAgency        | 0A00         |
+      | homepage.policycreatedBy     | V Daru       |
 
   @BasicInformationPage
   Scenario: Verify valid agent is successfully able create a policy in state ALABAMA with riskaddress "NOT COSTAL" with Occupancy as Rental/DP1/Full Repair Cost
@@ -812,15 +833,18 @@ Feature: AL_DP1.feature
       | ObjectName                  |
       | homepage.submitSearchbutton |
     And wait for the page to load | waitForPageLoad
-    Then Click on policy to go to Policy Page   |  userClicksonButton
-      | ObjectName                 | Value                |
-      | homepage.clicktoOpenPolicy | <storedPolicyNumber> |
+    Then Click on ExpandPolicyButton   |  userClicksonButton
+      | ObjectName                  |
+      | homepage.expandSearchPolicy |
     And wait for the page to load | waitForPageLoad
-    Then Verify if the Policypage is displaying  |  clickonlinktext
-    And wait for the page to load | waitForPageLoad
-    Then Click on Exit policy button   |  userClicksonButton
-      | ObjectName            |
-      | policyPage.exitbutton |
+    Then Expand the policy searching and verify the details below,   | verifyTextDetails
+      | ObjectName                   | Value        |
+      | homepage.policyEffectiveDate | <today>      |
+      | homepage.firstNameLastName   | Test Test AL |
+      | homepage.policyStatus        | LEAD         |
+      | homepage.policyState         | AL           |
+      | homepage.policyAgency        | 0A00         |
+      | homepage.policycreatedBy     | V Daru       |
 
   @BasicInformationPage
   Scenario: Verify valid agent is successfully able create a policy in state ALABAMA with riskaddress "NOT COSTAL" with Occupancy as Vacant/DP1/Full Repair Cost
@@ -914,15 +938,18 @@ Feature: AL_DP1.feature
       | ObjectName                  |
       | homepage.submitSearchbutton |
     And wait for the page to load | waitForPageLoad
-    Then Click on policy to go to Policy Page   |  userClicksonButton
-      | ObjectName                 | Value                |
-      | homepage.clicktoOpenPolicy | <storedPolicyNumber> |
+    Then Click on ExpandPolicyButton   |  userClicksonButton
+      | ObjectName                  |
+      | homepage.expandSearchPolicy |
     And wait for the page to load | waitForPageLoad
-    Then Verify if the Policypage is displaying  |  clickonlinktext
-    And wait for the page to load | waitForPageLoad
-    Then Click on Exit policy button   |  userClicksonButton
-      | ObjectName            |
-      | policyPage.exitbutton |
+    Then Expand the policy searching and verify the details below,   | verifyTextDetails
+      | ObjectName                   | Value        |
+      | homepage.policyEffectiveDate | <today>      |
+      | homepage.firstNameLastName   | Test Test AL |
+      | homepage.policyStatus        | LEAD         |
+      | homepage.policyState         | AL           |
+      | homepage.policyAgency        | 0A00         |
+      | homepage.policycreatedBy     | V Daru       |
 
   @BasicInformationPage
   Scenario: Verify valid agent is successfully able create a policy in state ALABAMA with riskaddress "NOT COSTAL" with Occupancy as Not A Residence/DP1/Full Repair Cost
@@ -1016,12 +1043,15 @@ Feature: AL_DP1.feature
       | ObjectName                  |
       | homepage.submitSearchbutton |
     And wait for the page to load | waitForPageLoad
-    Then Click on policy to go to Policy Page   |  userClicksonButton
-      | ObjectName                 | Value                |
-      | homepage.clicktoOpenPolicy | <storedPolicyNumber> |
+    Then Click on ExpandPolicyButton   |  userClicksonButton
+      | ObjectName                  |
+      | homepage.expandSearchPolicy |
     And wait for the page to load | waitForPageLoad
-    Then Verify if the Policypage is displaying  |  clickonlinktext
-    And wait for the page to load | waitForPageLoad
-    Then Click on Exit policy button   |  userClicksonButton
-      | ObjectName            |
-      | policyPage.exitbutton |
+    Then Expand the policy searching and verify the details below,   | verifyTextDetails
+      | ObjectName                   | Value        |
+      | homepage.policyEffectiveDate | <today>      |
+      | homepage.firstNameLastName   | Test Test AL |
+      | homepage.policyStatus        | LEAD         |
+      | homepage.policyState         | AL           |
+      | homepage.policyAgency        | 0A00         |
+      | homepage.policycreatedBy     | V Daru       |

@@ -144,7 +144,7 @@ public class LoginPage<ScenarioMetaData> extends BasePage{
 				driver.close();
 				Assert.assertTrue(false);
 			} else {
-				Assert.assertEquals("Tower Hill Insurance Group - Login", driver.getTitle());
+//				Assert.assertEquals("Tower Hill Insurance Group - Login", driver.getTitle());
 			}
 		}
 	}

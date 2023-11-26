@@ -31,6 +31,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.bdd.variables.ScenarioMataData;
+import com.bdd.variables.UiConstants;
+
 import utilities.ObjectMap;
 
 public class Action {
@@ -149,6 +152,24 @@ public class Action {
 		Select select = new Select(dropdownElement);
 		// Select by visible text
 		select.selectByVisibleText(optionValue);
+	}
+	
+	public static void waitForSpinner(ScenarioMataData scData) {
+	    WebDriver driver = scData.getDriver();
+	    
+	    // Temporary implicit wait
+	    driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+	    
+	    try {
+	        // Use WebDriverWait to wait for the spinner to disappear
+	        new WebDriverWait(driver, 60).until(ExpectedConditions.invisibilityOfElementLocated(By.linkText("Loading...")));
+	    } catch (NoSuchElementException e) {
+	        // Log or handle the exception if necessary
+	        System.out.println("Spinner element not found!");
+	    } finally {
+	        // Reset to default implicit wait
+	        driver.manage().timeouts().implicitlyWait(UiConstants.driverDefaultWait, TimeUnit.SECONDS);
+	    }
 	}
 
 	public void userEntersText(String locatorKey, String text) throws InterruptedException {
@@ -277,6 +298,7 @@ public class Action {
 	 */
 	public void type(String objectName, String text) throws Exception {
 		Thread.sleep(1000);
+		
 		try {
 			// Locate the input field using a suitable locator.
 			WebElement element = driver.findElement(ObjectMap.getLocator(objectName));
@@ -945,9 +967,7 @@ public class Action {
 	public Action(WebDriver driver) {
 		this.driver = driver;
 	}
-//	public void type(WebElement enteruserID, Map<String, String> data) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+
+
 
 }

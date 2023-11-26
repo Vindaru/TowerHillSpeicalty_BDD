@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 
+//@Data
 public class ScenarioMataData implements Serializable{
 	
 	private String gbGroupID;
@@ -30,7 +31,7 @@ public class ScenarioMataData implements Serializable{
 		return driver;
 	}
 	private Map <String,String> dynamicDataMap = new HashMap<String, String>();
-
+	
 
 
 	public static ScenarioMataData get(int hashCode) {

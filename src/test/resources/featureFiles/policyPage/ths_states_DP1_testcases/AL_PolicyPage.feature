@@ -4,7 +4,7 @@ Feature: PolicyPage.feature
   Background: 
     Given Internal Agent login successfully  | rpmLogin
       | URL |
-      | red |
+      | UAT |
 
 #X016996935
   @DP1_OWNER_ACV @Priority2

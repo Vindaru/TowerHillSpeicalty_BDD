@@ -4,7 +4,7 @@ Feature: AL_DP1.feature
   Background: 
     Given Internal Agent login successfully  | rpmLogin
       | URL |
-      | red |
+      | UAT |
 
   @DP1_OWNER_ACV @Priority1
   Scenario: Verify valid agent is successfully able create a policy in state ALABAMA with riskaddress "NOT COSTAL" with Occupancy as Owner/DP1/ACV
@@ -14,6 +14,7 @@ Feature: AL_DP1.feature
     Then Select State as Alabama | SelectObject
       | State |
       | AL    |
+    And wait for the page to load | waitForPageLoad
     And Select Business Owned as NO - default |  selectRadiobutton
       | ObjectName                             |
       | basicinformationapage.businessOwnerdNO |

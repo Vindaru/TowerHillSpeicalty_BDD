@@ -10,11 +10,11 @@ public class API_Constant_Values {
 //   PROD KEY - f09f140aa294431db39d97da92b45831
 //   PROD_KEY_INSURENCESCORE - bea60dc5a8e646ab84d80f16b1e46f47
 
-	public static final String DP1_Path_TestData = "C:\\Users\\vdaru\\OneDrive - Tower Hill Insurance Group, LLC\\Desktop\\Eclipse-WorkSpace\\API workbooks\\Mike\\";
-	public static final String DP1_File_TestData = "SUG_DP1.xlsx";
-
-	public static final String DP3_Path_TestData = "C:\\Users\\vdaru\\OneDrive - Tower Hill Insurance Group, LLC\\Desktop\\Eclipse-WorkSpace\\API workbooks\\Mike\\";
-	public static final String DP3_File_TestData = "SUG_DP3.xlsx";
+	public static final String DP1_Path_TestData = "C:\\Users\\vdaru\\OneDrive - Tower Hill Insurance Group, LLC\\Desktop\\Eclipse-WorkSpace\\API workbooks\\Mike\\Dec Effective date\\";
+	public static final String DP1_File_TestData = "SUG_D1_DEC.xlsx";
+	
+	public static final String DP3_Path_TestData = "C:\\Users\\vdaru\\OneDrive - Tower Hill Insurance Group, LLC\\Desktop\\Eclipse-WorkSpace\\API workbooks\\Mike\\Dec Effective date\\";
+	public static final String DP3_File_TestData = "SUG_D3_DEC.xlsx";
 
 	public static final String HO4_Path_TestData = "C:\\Users\\vdaru\\Desktop\\API_Automation\\MH\\";
 	public static final String HO4_File_TestData = "API_MH.xlsx";
@@ -24,7 +24,13 @@ public class API_Constant_Values {
 
 	public static final String HO3_Path_TestData = "C:\\Users\\vdaru\\Desktop\\API_CLIENT\\API_Automation\\HO3\\";
 	public static final String HO3_File_TestData = "HO3_API_AutomationDataFile.xlsx";
-
+	
+	public static final String update360_testpath = "C:\\Users\\vdaru\\OneDrive - Tower Hill Insurance Group, LLC\\Desktop\\UW_UPDATE_RENWAL ENG\\";
+	public static final String upate360_filename = "REN_UPDATE_360Value.xlsx";
+	
+	//Update 360 Run in prod: 
+	public static final String update360_Path = "C:\\Users\\vdaru\\OneDrive - Tower Hill Insurance Group, LLC\\Desktop\\UW_UPDATE_RENWAL ENG\\";
+	public static final String update360_File = "REN_UPDATE_360Value.xlsx";
 	// URL
 	public static final String URL_API_UAT = "https://policy-ws.uat.thig.com";
 	public static final String URL_API_GREEN = "https://policy-ws.green.thig.com";

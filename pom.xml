@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>THS-BDD</groupId>
-	<artifactId>THS-BDD</artifactId>
+	<artifactId>TowerHillSpeicalty_BDD</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -21,11 +21,51 @@
 	<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
 
 	<dependencies>
+		<!--
+		https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
-			<version>3.141.59</version>
+			<version>4.11.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.groovy/groovy-xml -->
+		<dependency>
+			<groupId>org.apache.groovy</groupId>
+			<artifactId>groovy-xml</artifactId>
+			<version>4.0.11</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit
+		<scope>test</scope>-->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>7.14.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>5.3.2</version>
+			<scope>test</scope>
+		</dependency>
+		<!--
+		https://mvnrepository.com/artifact/io.rest-assured/rest-assured-common -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured-common</artifactId>
+			<version>5.3.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.groovy/groovy -->
+		<dependency>
+			<groupId>org.apache.groovy</groupId>
+			<artifactId>groovy</artifactId>
+			<version>4.0.11</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
@@ -37,12 +77,6 @@
 			<artifactId>poi</artifactId>
 			<version>4.1.2</version>
 		</dependency>
-		<dependency>
-			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-junit</artifactId>
-			<version>7.13.0</version>
-			<scope>test</scope>
-		</dependency>
 		<!--
 		https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
 		<dependency>
@@ -51,13 +85,20 @@
 			<version>5.10.0</version>
 			<scope>test</scope>
 		</dependency>
+		<!--
+		https://mvnrepository.com/artifact/org.apache.maven/maven-plugin-api -->
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+			<version>3.9.4</version>
+		</dependency>
 
 		<!--
 		https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
 		<dependency>
 			<groupId>net.masterthought</groupId>
 			<artifactId>maven-cucumber-reporting</artifactId>
-			<version>5.7.5</version>
+			<version>5.7.6</version>
 		</dependency>
 
 		<dependency>
@@ -106,18 +147,12 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
-		<dependency>
-			<groupId>io.github.bonigarcia</groupId>
-			<artifactId>webdrivermanager</artifactId>
-			<version>4.0.0</version>
-		</dependency>
-		<!--
-		https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
-		<dependency>
-			<groupId>net.masterthought</groupId>
-			<artifactId>maven-cucumber-reporting</artifactId>
-			<version>5.7.6</version>
-		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+<dependency>
+    <groupId>io.github.bonigarcia</groupId>
+    <artifactId>webdrivermanager</artifactId>
+    <version>5.6.2</version>
+</dependency>
 
 	</dependencies>
 	<build>
@@ -125,9 +160,18 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.22.0</version>
+				<version>2.22.0</version> <!-- Ensure you have a compatible
+				version here -->
 				<configuration>
 					<testFailureIgnore>true</testFailureIgnore>
+					<includes>
+						<include>**/*TestRunner.java</include> <!-- This assumes
+						you
+						have a runner class. Adjust the path if necessary. -->
+					</includes>
+					<systemPropertyVariables>
+						<cucumber.options>@DP1_OWNER_ACV</cucumber.options>
+					</systemPropertyVariables>
 				</configuration>
 			</plugin>
 			<plugin>

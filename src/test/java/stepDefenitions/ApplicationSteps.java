@@ -25,7 +25,6 @@ import com.ths.actiondriver.CoverageValidator_coverageA;
 import com.ths.actiondriver.CoverageValidator_coverageB;
 import com.ths.actiondriver.CoverageValidator_coverageC;
 import com.bdd.variables.ScenarioMataData;
-
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
@@ -66,7 +65,6 @@ public class ApplicationSteps extends BasePage {
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\vdaru\\eclipse-workspace\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
-
 		action = new Action(driver);
 		lp = new LoginPage(driver);
 		hp = new HomePage(driver);
@@ -76,8 +74,8 @@ public class ApplicationSteps extends BasePage {
 			js.executeScript("window.scrollBy(0,250)", "");
 			if (data.containsValue("red")) {
 				driver.get("https://oasis.red.thig.com");
-			} else if (data.containsValue("yellow")) {
-				driver.get("https://oasis.yellow.thig.com");
+			} else if (data.containsValue("UAT")) {
+				driver.get("https://oasis.uat.thig.com");
 			} else if (data.containsValue("green")) {
 				driver.get("https://oasis.green.thig.com");
 			}
@@ -412,7 +410,16 @@ public class ApplicationSteps extends BasePage {
 	public void enter_insured_basicinformation_details(DataTable table) throws InterruptedException {
 		bp.basicInformationPage(table);
 	}
+	@Then("^.*enterPolicyAndSearch$")
+	public void enterPolicyAndSearch(String policyNumber) {
+        WebElement policyInput = driver.findElement(By.id("policyInputId")); // Adjust the locator accordingly
+        policyInput.clear();
+        policyInput.sendKeys(policyNumber);
 
+        WebElement searchButton = driver.findElement(By.id("searchButtonId")); // Adjust the locator accordingly
+        searchButton.click();
+    }
+	
 	@After
 	public void tearDown(Scenario scenario) throws InterruptedException {
 		Thread.sleep(2000);

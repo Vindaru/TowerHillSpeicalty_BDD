@@ -110,14 +110,14 @@ public class MH  extends ExcelUtils{
 	               	"               <v2:NearFireHydrant>"+Near_Hyderate+"</v2:NearFireHydrant>\r\n" + 
 	               	"               <v2:Occupancy>"+Occupancy+"</v2:Occupancy>\r\n" + 
 	               	"               <v2:OccupiedBy>"+OccupiedBY+"</v2:OccupiedBy>\r\n" + 
-//	               	"               <!--Optional:-->\r\n" + 
-//	               	"               <v2:ParkStatus>"+ParkStatus+"</v2:ParkStatus>\r\n" + 
+	               	"               <!--Optional:-->\r\n" + 
+	               	"               <v2:ParkStatus>"+ParkStatus+"</v2:ParkStatus>\r\n" + 
 	               	"               <v2:RoofYear>"+RooFYear+"</v2:RoofYear>\r\n" +
 	               	"            </v2:Location>\r\n" + 
 	               	"            <v2:PersonalPropertyReplacementCost>"+PersonalPropertyReplacementCost+"</v2:PersonalPropertyReplacementCost>\r\n" + 
 	               	"            <v2:PrimaryInsured>\r\n" + 
 //	               	"               <!--Optional:-->\r\n" + 
-//	               	"               <v2:InsuranceScore>"+InsurenceScore+"</v2:InsuranceScore>\r\n" +
+	               	"               <v2:InsuranceScore>"+InsurenceScore+"</v2:InsuranceScore>\r\n" +
 	               	"               <v2:FirstName>"+FirstName+"</v2:FirstName>              \r\n" + 
 	               	"               <v2:LastName>"+LastName+"</v2:LastName>\r\n" + 
 	               	"               <v2:DateOfBirth>"+Date_OF_Birth+"</v2:DateOfBirth>\r\n" + 
